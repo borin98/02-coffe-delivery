@@ -1,13 +1,13 @@
 "use client"
 
 import Link from "next/link";
-import CafeLogo from "@/app/logo.svg"
 import Image from "next/image";
+import CafeLogo from "@/public/logo.svg"
 
 export function LogoCafe() {
     return (
-      <Link href={"/"}>
-        <Image src={CafeLogo} alt={"Café maneiro"}/>
-      </Link>
+        <Link href={"/"}>
+            <Image src={CafeLogo as string} alt={""}/>
+        </Link>
     );
 }
