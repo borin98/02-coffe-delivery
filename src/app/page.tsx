@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 import Image from "next/image";
 import CafeSection from "@/public/cafeSection.png"
 import {CafeShop} from "@/app/_components/CafeOptions/CafeShop";
+import {baloo_2} from "@/styles/fonts";
 
 /**
  * Renders the root layout of the application.
@@ -12,12 +13,14 @@ import {CafeShop} from "@/app/_components/CafeOptions/CafeShop";
 export default function Home() {
     return (
         <main className={"w-full flex flex-col pl-40"}>
-            <section className={"flex flex-row gap-x-20 w-full"}>
-                <div className={"flex flex-col gap-y-3 w-max-[588px]"}>
-                    <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-                    <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+            <section className={"flex justify-between"}>
+                <div className={"flex flex-col gap-y-4 w-[588px] h-[190px]"}>
+                    <h1 className={`${baloo_2.className} text-5xl leading-[3.30rem] font-extrabold`}>
+                        Encontre o café perfeito para qualquer hora do dia
+                    </h1>
+                    <p className={"text-xl font-bold text-[#403937]"}>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
                 </div>
-                <Image className={"ml-40"} src={CafeSection} alt={""} width={360} height={476}/>
+                <Image className={"pr-40"} src={CafeSection} alt={""} width={550}/>
             </section>
             <CafeShop/>
         </main>

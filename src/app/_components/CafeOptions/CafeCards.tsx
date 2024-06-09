@@ -2,7 +2,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 
 export function CafeCards() {
     return (
-        <Card className={"w-64 h-[310px] flex flex-col items-center justify-center"}>
+        <Card className={"w-64 h-[310px] flex flex-col items-center justify-center shadow-xl"}>
             <CardHeader className={"flex flex-col gap-y-2"}>
                 <span>Img 1</span>
                 <span>Categoria</span>
