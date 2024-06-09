@@ -1,6 +1,7 @@
 import "@/styles/globals.css"
 import Image from "next/image";
 import CafeSection from "@/public/cafeSection.png"
+import {CafeShop} from "@/app/_components/CafeOptions/CafeShop";
 
 /**
  * Renders the root layout of the application.
@@ -10,7 +11,7 @@ import CafeSection from "@/public/cafeSection.png"
  */
 export default function Home() {
     return (
-        <main className={"w-full flex flex-row pl-40"}>
+        <main className={"w-full flex flex-col pl-40"}>
             <section className={"flex flex-row gap-x-20 w-full"}>
                 <div className={"flex flex-col gap-y-3 w-max-[588px]"}>
                     <h1>Encontre o café perfeito para qualquer hora do dia</h1>
@@ -18,6 +19,7 @@ export default function Home() {
                 </div>
                 <Image className={"ml-40"} src={CafeSection} alt={""} width={360} height={476}/>
             </section>
+            <CafeShop/>
         </main>
     );
 }
