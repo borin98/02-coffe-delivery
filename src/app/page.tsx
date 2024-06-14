@@ -1,7 +1,7 @@
 import "@/styles/globals.css"
 import Image from "next/image";
 import CafeSection from "@/public/cafeSection.png"
-import {CafeShop} from "@/app/_components/CafeOptions/CafeShop";
+import {CafeShop} from "@/components/application_components/CafeOptions/CafeShop";
 import {baloo_2} from "@/styles/fonts";
 
 /**

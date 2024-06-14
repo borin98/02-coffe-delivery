@@ -1,6 +1,5 @@
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
-import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 
 export function CafeCards() {
@@ -10,11 +9,14 @@ export function CafeCards() {
                 <span>Img 1</span>
                 <Badge>Categoria</Badge>
             </CardHeader>
-            <CardContent className={"flex flex-col gap-y-2"}>
-                <CardTitle> Café do Brasil</CardTitle>
+            <CardContent className={"flex flex-col text-center gap-y-2"}>
+                <CardTitle>Café do Brasil</CardTitle>
                 <CardDescription>Descrição</CardDescription>
             </CardContent>
             <CardFooter className={"flex flex-row gap-x-2"}>
+                <div>
+                    <span>R$ 100</span>
+                </div>
                 <div
                     className={"inline-flex items-center rounded-lg bg-white border border-gray-200 dark:border-gray-800"}>
                     <Button variant={"ghost"}

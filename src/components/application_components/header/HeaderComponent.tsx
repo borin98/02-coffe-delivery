@@ -1,5 +1,5 @@
-import {LogoCafe} from "@/app/_components/header/content/LogoCafe";
-import {HeadersButtons} from "@/app/_components/header/content/HeadersButtons";
+import {LogoCafe} from "@/components/application_components/header/content/LogoCafe";
+import {HeadersButtons} from "@/components/application_components/header/content/HeadersButtons";
 
 export function HeaderComponent() {
     return (

@@ -1,4 +1,4 @@
-import {CafeCards} from "@/app/_components/CafeOptions/CafeCards";
+import {CafeCards} from "@/components/application_components/CafeOptions/CafeCards";
 import {baloo_2} from "@/styles/fonts";
 
 export function CafeShop() {
