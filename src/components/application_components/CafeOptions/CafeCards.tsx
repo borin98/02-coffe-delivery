@@ -1,6 +1,10 @@
+"use client";
+
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
+import Image from "next/image";
+import WhiteCartIcon from "@/public/carts/white_cart.png";
 
 export function CafeCards() {
     return (
@@ -30,6 +34,14 @@ export function CafeCards() {
                         variant={"ghost"}
                         className={"rounded-r-lg px-3 py-2 text-purple-rocket hover:bg-gray-100 dark:hover:bg-gray-800"}>
                         +
+                    </Button>
+                </div>
+                <div>
+                    <Button className={"bg-[#4B2995] flex space-x-2 p-2 items-center"} variant={"secondary"}
+                            onClick={() => console.log("Cliquei no botão")}>
+                        <Image src={WhiteCartIcon}
+                               alt={"Foto de um carrinho de compras para acessar todas as compras realizadas no site"}
+                               width={22}/>
                     </Button>
                 </div>
             </CardFooter>

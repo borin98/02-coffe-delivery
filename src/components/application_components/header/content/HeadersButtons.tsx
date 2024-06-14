@@ -2,7 +2,7 @@
 
 import {Button} from "@/components/ui/button";
 import LocalizationLogo from "@/public/localization.png";
-import CartIcon from "@/public/cart.png";
+import CartIcon from "@/public/carts/brown_cart.png";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
 import {ToggleButton} from "@/components/ui/toggle-button";
