@@ -1,4 +1,4 @@
-import {type Item} from "@/server/db/fake_database";
+import {type CartItem} from "@/reducers/cart/reducer";
 
 export enum ActionTypes {
     ADD_ITEM = "ADD_ITEM",
@@ -7,11 +7,11 @@ export enum ActionTypes {
     DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY",
 }
 
-export type Actions =
+export type ReducerActions =
     | {
     type: ActionTypes.ADD_ITEM;
     payload: {
-        item: Item
+        item: CartItem
     }
 }
     | {
@@ -20,42 +20,42 @@ export type Actions =
         | ActionTypes.INCREMENT_ITEM_QUANTITY
         | ActionTypes.REMOVE_ITEM
     payload: {
-        itemId: Item["id"]
+        itemId: CartItem["id"]
     }
 }
 
-export function addItemAction(item: Item) {
+export function addItemAction(item: CartItem) {
     return {
         type: ActionTypes.ADD_ITEM,
         payload: {
             item,
         },
-    } satisfies Actions
+    } satisfies ReducerActions
 }
 
-export function removeItemAction(itemId: Item["id"]) {
+export function removeItemAction(itemId: CartItem["id"]) {
     return {
         type: ActionTypes.REMOVE_ITEM,
         payload: {
             itemId,
         },
-    } satisfies Actions
+    } satisfies ReducerActions
 }
 
-export function incrementItemQuantityAction(itemId: Item["id"]) {
+export function incrementItemQuantityAction(itemId: CartItem["id"]) {
     return {
         type: ActionTypes.INCREMENT_ITEM_QUANTITY,
         payload: {
             itemId,
         },
-    } satisfies Actions
+    } satisfies ReducerActions
 }
 
-export function decrementItemQuantityAction(itemId: Item["id"]) {
+export function decrementItemQuantityAction(itemId: CartItem["id"]) {
     return {
         type: ActionTypes.DECREMENT_ITEM_QUANTITY,
         payload: {
             itemId,
         },
-    } satisfies Actions
+    } satisfies ReducerActions
 }

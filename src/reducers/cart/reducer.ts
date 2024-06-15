@@ -1,17 +1,42 @@
 import {produce} from 'immer'
-import {type Actions, ActionTypes} from "@/reducers/cart/actions";
+import {z} from "zod"
+import {type ReducerActions, ActionTypes} from "@/reducers/cart/actions";
+import {type ItemDB} from "@/server/db/fake_database";
 
+const orderSchema = z.object({
+    cep: z.number({invalid_type_error: 'Informe o CEP'}),
+    street: z.string().min(1, 'Informe a rua'),
+    number: z.string().min(1, 'Informe o número'),
+    fullAddress: z.string(),
+    neighborhood: z.string().min(1, 'Informe o bairro'),
+    city: z.string().min(1, 'Informe a cidade'),
+    state: z.string().min(1, 'Informe a UF'),
+    paymentMethod: z.enum(['credit', 'debit', 'cash'], {
+        invalid_type_error: 'Informe um método de pagamento',
+    }),
+})
 
-export interface CartItem {
-    id: string
-    quantity: number
+export type OrderInfo = z.infer<typeof orderSchema>
+
+export interface CartItem extends ItemDB {
+    quantity: number;
+}
+
+interface OrderDelivery extends OrderInfo {
+    items: ItemDB[]
+    totalPrice: number
 }
 
 interface CartState {
     cart: CartItem[]
 }
 
-export function cartReducer(state: CartState, action: Actions) {
+interface HistoryState {
+    cart: Record<string, CartItem>
+    orders: Record<string, OrderDelivery>
+}
+
+export function cartReducer(state: CartState, action: ReducerActions) {
     switch (action.type) {
         case ActionTypes.ADD_ITEM:
             return produce(state, (draft) => {
