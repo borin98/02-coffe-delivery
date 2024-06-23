@@ -1,32 +1,32 @@
-import { z } from "zod";
+import {z} from "zod";
 
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-
-let post = {
-  id: 1,
-  name: "Hello World",
-};
+import {createTRPCRouter, publicProcedure} from "@/server/api/trpc";
+import {fakeDatabase} from "@/server/db/fake_database";
+import {cartItemSchema} from "@/reducers/cart/reducer";
 
 export const postRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
+    getDefaultCart: publicProcedure
+        .output(z.object({
+            cart: z.array(cartItemSchema),
+        }))
+        .query(async () => {
+            const databaseData = fakeDatabase.map((item) => {
+                return {
+                    ...item,
+                    quantity: 0
+                }
+            })
 
-  create: publicProcedure
-    .input(z.object({ name: z.string().min(1) }))
-    .mutation(async ({ input }) => {
-      // simulate a slow db call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+            try {
+                const validatedOrder = cartItemSchema.parse(databaseData);
+                console.log("Validated order:", validatedOrder);
+            } catch (e) {
+                console.error("Validation error:");
+            }
 
-      post = { id: post.id + 1, name: input.name };
-      return post;
-    }),
-
-  getLatest: publicProcedure.query(() => {
-    return post;
-  }),
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            return {
+                cart: databaseData,
+            };
+        }),
 });

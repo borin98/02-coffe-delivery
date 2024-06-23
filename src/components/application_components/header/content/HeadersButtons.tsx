@@ -2,9 +2,10 @@
 
 import {Button} from "@/components/ui/button";
 import LocalizationLogo from "@/public/localization.png";
-import CartIcon from "@/public/cart.png";
+import CartIcon from "@/public/carts/brown_cart.png";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import {ToggleButton} from "@/components/ui/toggle-button";
 
 /**
  * Renders the header buttons component.
@@ -17,9 +18,10 @@ export function HeadersButtons() {
 
     return (
         <div className={"flex flex-row gap-x-3 items-center pr-40"}>
+            <ToggleButton/>
             <div className={"bg-clip-text text-transparent bg-pink-500 flex flex-row justify-items-start items-center"}>
                 <Image src={LocalizationLogo} alt={"Ponteiro de localização"} width={22}/>
-                <span>São Paulo, SP</span>
+                <span className={"px-1"}>São Paulo, SP</span>
             </div>
             <Button className={"bg-[#F1E9C9] flex space-x-2 p-2 items-center"} variant={"secondary"}
                     onClick={() => router.push("/payment")}>
