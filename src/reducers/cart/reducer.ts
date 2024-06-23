@@ -1,18 +1,18 @@
-import {produce} from 'immer'
+import {produce} from "immer"
 import {z} from "zod"
 import {type ReducerActions, ActionTypes} from "@/reducers/cart/actions";
-import {type ItemDB} from "@/server/db/fake_database";
+import {type ItemDB, itemSchema} from "@/server/db/fake_database";
 
 const orderSchema = z.object({
-    cep: z.number({invalid_type_error: 'Informe o CEP'}),
-    street: z.string().min(1, 'Informe a rua'),
-    number: z.string().min(1, 'Informe o número'),
+    cep: z.number({invalid_type_error: "Informe o CEP"}),
+    street: z.string().min(1, "Informe a rua"),
+    number: z.string().min(1, "Informe o número"),
     fullAddress: z.string(),
-    neighborhood: z.string().min(1, 'Informe o bairro'),
-    city: z.string().min(1, 'Informe a cidade'),
-    state: z.string().min(1, 'Informe a UF'),
-    paymentMethod: z.enum(['credit', 'debit', 'cash'], {
-        invalid_type_error: 'Informe um método de pagamento',
+    neighborhood: z.string().min(1, "Informe o bairro"),
+    city: z.string().min(1, "Informe a cidade"),
+    state: z.string().min(1, "Informe a UF"),
+    paymentMethod: z.enum(["credit", "debit", "cash"], {
+        invalid_type_error: "Informe um método de pagamento",
     }),
 })
 
@@ -22,14 +22,22 @@ export interface CartItem extends ItemDB {
     quantity: number;
 }
 
+export const cartItemSchema = itemSchema.extend({
+    quantity: z.number().int().nonnegative(),
+});
+
 interface OrderDelivery extends OrderInfo {
     items: ItemDB[]
     totalPrice: number
 }
 
-interface CartState {
+export interface CartState {
     cart: CartItem[]
 }
+
+export const cartStateSchema = z.object({
+    cart: z.array(cartItemSchema),
+})
 
 interface HistoryState {
     cart: Record<string, CartItem>
