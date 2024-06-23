@@ -27,3 +27,16 @@ You can check out the [create-t3-app GitHub repository](https://github.com/t3-os
 ## How do I deploy this?
 
 Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+
+
+## Repo TODO's
+
+- [ ] Add the cart reducer to the state
+- [ ] Optimize useEffect to only run when the cart-state changes
+- [ ] Separate and use only use client for necessary components
+- [ ] Change WhiteCartIcon to react-icons and use the icons from the library
+- [ ] Add the payment page
+- [ ] Add an order status page
+- [ ] Add a checkout page
+- [ ] Add a cart page
+- [ ] Change the cart icon to use the react-icons library
