@@ -1,22 +1,21 @@
 "use client";
 
 import {Button} from "@/components/ui/button";
-import {useState} from "react";
 
-export function CafeQuantityButton() {
+interface CafeQuantityButtonProps {
+    cafeQuantity: number;
+    onCafeQuantityChange: (quantity: number) => void;
+}
 
-    const [cafeQuantity, setCafeQuantity] = useState(0);
-
-    const handleCafeQuantityChange = (quantity: number) => {
-        setCafeQuantity((prevQuantity) => prevQuantity + quantity);
-    }
+export function CafeQuantityButton(props: CafeQuantityButtonProps) {
+    const {cafeQuantity, onCafeQuantityChange} = props;
 
     return (
         <div
             className={"inline-flex items-center rounded-lg bg-white border border-gray-200 dark:border-gray-800"}>
             <Button variant={"ghost"} disabled={cafeQuantity === 0}
                     className={"rounded-l-lg px-3 py-2 text-purple-rocket hover:bg-gray-100 dark:hover:bg-gray-800"}
-                    onClick={() => handleCafeQuantityChange(-1)}>
+                    onClick={() => onCafeQuantityChange(-1)}>
                 -
             </Button>
             <span className={"mx-2 text-sm font-medium"}>
@@ -25,7 +24,7 @@ export function CafeQuantityButton() {
             <Button
                 variant={"ghost"} disabled={cafeQuantity === 100}
                 className={"rounded-r-lg px-3 py-2 text-purple-rocket hover:bg-gray-100 dark:hover:bg-gray-800"}
-                onClick={() => handleCafeQuantityChange(1)}>
+                onClick={() => onCafeQuantityChange(1)}>
                 +
             </Button>
         </div>

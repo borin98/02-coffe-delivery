@@ -3,8 +3,15 @@
 import {Button} from "@/components/ui/button";
 import Image from "next/image";
 import WhiteCartIcon from "@/public/carts/white_cart.png";
+import {useCart} from "@/context/cartContext";
 
-export function CheckCafeQuantityButton() {
+interface AddToCartButtonProps {
+    cafeQuantity: number;
+}
+
+export function AddToCartButton({cafeQuantity}: AddToCartButtonProps) {
+    const {addToCart} = useCart();
+
     return (
         <div>
             <Button className={"bg-[#4B2995] flex space-x-2 p-2 items-center"} variant={"secondary"}
