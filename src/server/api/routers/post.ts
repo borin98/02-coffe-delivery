@@ -1,8 +1,10 @@
 import {z} from "zod";
-
 import {createTRPCRouter, publicProcedure} from "@/server/api/trpc";
-import {fakeDatabase} from "@/server/db/fake_database";
-import {cartItemSchema} from "@/reducers/cart/reducer";
+import {fakeDatabase, itemSchema} from "@/server/db/fake_database";
+
+export const cartItemSchema = itemSchema.extend({
+    quantity: z.number().int().nonnegative(),
+});
 
 export const postRouter = createTRPCRouter({
     getDefaultCart: publicProcedure
@@ -19,9 +21,9 @@ export const postRouter = createTRPCRouter({
 
             try {
                 const validatedOrder = cartItemSchema.parse(databaseData);
-                console.log("Validated order:", validatedOrder);
+                console.log("Validated order: ", validatedOrder);
             } catch (e) {
-                console.error("Validation error:");
+                console.error("Validation error: ", e);
             }
 
             await new Promise((resolve) => setTimeout(resolve, 3000));

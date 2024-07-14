@@ -1,7 +1,9 @@
+"use client";
+
 import {useContext, createContext, type ReactNode, useState} from 'react';
 import type {ItemDB} from "@/server/db/fake_database";
 
-interface CartItem extends ItemDB {
+export interface CartItem extends ItemDB {
     quantity: number
 }
 
@@ -14,7 +16,7 @@ interface CartContextType {
 const CartContext = createContext({} as CartContextType)
 
 export function CartProvider({children}: { children: ReactNode }) {
-    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     function addToCart(itemToAdd: ItemDB) {
         setCartItems((state) => {
