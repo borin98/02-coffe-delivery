@@ -9,8 +9,8 @@ export interface CartItem extends ItemDB {
 
 interface CartContextType {
     cart: CartItem[]
-    addToCart: (item: ItemDB) => void
-    removeFromCart: (item: ItemDB) => void
+    addToCart: (item: CartItem) => void
+    removeFromCart: (item: CartItem) => void
 }
 
 const CartContext = createContext({} as CartContextType)
@@ -18,24 +18,24 @@ const CartContext = createContext({} as CartContextType)
 export function CartProvider({children}: { children: ReactNode }) {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    function addToCart(itemToAdd: ItemDB) {
+    function addToCart(itemToAdd: CartItem) {
         setCartItems((state) => {
             const isItemExists = state.find(item => item.id === itemToAdd.id);
             if (isItemExists) {
                 return state.map(item => {
                     if (item.id === itemToAdd.id) {
-                        return {...item, quantity: item.quantity + 1}
+                        return {...item, quantity: item.quantity + itemToAdd.quantity}
                     }
                     return item
                 });
             } else {
-                return [...state, {...itemToAdd, quantity: 1}]
+                return [...state, {...itemToAdd, quantity: itemToAdd.quantity}]
             }
 
         })
     }
 
-    function removeFromCart(itemToRemove: ItemDB) {
+    function removeFromCart(itemToRemove: CartItem) {
         setCartItems((state) => {
             const isItemExists = state.find(item => item.id === itemToRemove.id)
             if (isItemExists) {

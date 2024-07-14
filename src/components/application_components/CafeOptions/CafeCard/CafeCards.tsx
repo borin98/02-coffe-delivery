@@ -3,6 +3,7 @@ import {Badge} from "@/components/ui/badge";
 import {api} from "@/trpc/server";
 import {CafeCardButtons} from "@/components/application_components/CafeOptions/CafeCard/CafeCardButtons";
 
+// TODO : Need to add a tooltip that logs how many added coffees to the cart
 export async function CafeCards() {
     const initialCartState = await api.post.getDefaultCart();
 
@@ -33,7 +34,7 @@ export async function CafeCards() {
                         <div>
                             <span>R$ {cartItem.cafe_price}</span>
                         </div>
-                        <CafeCardButtons/>
+                        <CafeCardButtons cartItem={cartItem}/>
                     </CardFooter>
                 </Card>
             ))}

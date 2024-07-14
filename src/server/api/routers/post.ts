@@ -6,6 +6,7 @@ export const cartItemSchema = itemSchema.extend({
     quantity: z.number().int().nonnegative(),
 });
 
+// TODO : Zod is not working with the type of the database, need to fix it
 export const postRouter = createTRPCRouter({
     getDefaultCart: publicProcedure
         .output(z.object({
